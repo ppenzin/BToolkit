@@ -229,16 +229,16 @@ set variables_set = 0
 	
       		#setenv  CC			"$CC_prog -Doptimize=-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -mtune=generic -Wl,--as-needed -pedantic -pipe -Dlinux -trigraphs"
 		#setenv  CC			"$CC_prog -Dlinux -trigraphs -m32 -g -ggdb -DVERBOSE_FLAG"
-		setenv  CC			"$CC_prog -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -g -ggdb -O0 -m32 -trigraphs"
+		setenv  CC			"$CC_prog -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -g -ggdb -O0 -m32 -trigraphs -fcommon"
       	
       
     	else if ( $PROCESSOR == "x86_64" ) then
       		#setenv  CC			"$CC_prog -Doptimize=-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -mtune=generic -Wl,--as-needed -pedantic -pipe -Dlinux -trigraphs"
 		#setenv  CC			"$CC_prog -Dlinux -trigraphs -m64 -g -ggdb -DVERBOSE_FLAG"
-		setenv  CC			"$CC_prog -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -g -ggdb -O0 -m64 -trigraphs"
+		setenv  CC			"$CC_prog -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -g -ggdb -O0 -m64 -trigraphs -fcommon"
     	else
       	
-		setenv  CC			"$CC_prog -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -mtune=generic -Wl,--as-needed -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -DVERBOSE_FLAG -O0 -trigraphs"
+		setenv  CC			"$CC_prog -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -mtune=generic -Wl,--as-needed -pedantic -pipe -Dlinux -D_BSD_SOURCE -DPOSIX_SOURCE -DVERBOSE_FLAG -O0 -trigraphs -fcommon"
 	
     	endif
 	
