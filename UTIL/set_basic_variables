@@ -173,6 +173,10 @@ switch ( $PLATFORM )
     setenv VERSION MINGW_VERSION
     setenv SUB_VERSION MINGW_SUB_VERSION
   breaksw
+  case FreeBSD
+    setenv VERSION FREEBSD_VERSION
+    setenv SUB_VERSION FREEBSD_SUB_VERSION
+  breaksw
   default:
     setenv VERSION UNKNOWN_VERSION
     setenv SUB_VERSION UNKNOWN_SUB_VERSION

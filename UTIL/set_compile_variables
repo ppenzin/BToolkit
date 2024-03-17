@@ -268,6 +268,25 @@ set variables_set = 0
 
     breaksw
 
+    case FREEBSD_VERSION:
+
+        set plat_name = "defaults for FREEBSD PLATFORM"
+
+	# override default compiler
+	setenv  CC_prog			clang
+	# the rest
+	setenv  CC			"$CC_prog -pedantic -pipe -fcommon"
+	setenv  CC_opt_non_Motif	"-O3"
+	setenv  CC_opt_Motif		"-O"
+	setenv  CC_X_incl_dir   	"-I/usr/local/include"
+	setenv  CC_X_link_dir		"-L/usr/local/lib"
+	setenv  CC_X_link_lib		"-lXm -lXt -lX11"
+	setenv  CC_non_X_incl_dir  	""
+	setenv  CC_non_X_link_dir	""
+	setenv  CC_non_X_link_lib	"-lcompat"
+
+    breaksw
+
     case CYGWIN_VERSION:
     case MINGW_VERSION:
 

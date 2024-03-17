@@ -345,7 +345,9 @@ printf ( "    not my own pid\n" );
 ***/
 
 #if ( defined ( UNKNOWN_VERSION )  )
-        if ( getpgrp ( p ) == -1 ) {
+        if ( getpgid ( p ) == -1 ) {
+#elif (defined ( FREEBSD_VERSION ) )
+        if ( getpgrp () == -1 ) {
 #else
         if ( getpgid ( p ) == -1 ) {
 #endif /* ( defined ( AIX_VERSION ) || defined ( LINUX_VERSION ) || defined ( SOLARIS_VERSION ) ) */
@@ -400,7 +402,9 @@ int p;
     printf ( "\n\n    remove_all_zombie_pid: %s ", buf );
 #endif /* VERBOSE_FLAG */
 #if ( defined ( UNKNOWN_VERSION ) )
-  if ( getpgrp ( p ) == -1 ) {
+  if ( getpgid ( p ) == -1 ) {
+#elif (defined ( FREEBSD_VERSION ) )
+  if ( getpgrp () == -1 ) {
 #else
   if ( getpgid ( p ) == -1 ) {
 #endif /* ( defined ( AIX_VERSION ) || defined ( LINUX_VERSION ) || defined ( SOLARIS_VERSION ) ) */
