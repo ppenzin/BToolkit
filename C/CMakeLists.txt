@@ -51,3 +51,18 @@ add_executable(Unix2Dos
 add_executable(Dos2Unix
   Dos2Unix.c
 )
+
+add_library(BToolkitlm_globals OBJECT
+  BToolkitlm_globals.c
+)
+target_compile_definitions(BToolkitlm_globals PUBLIC
+  BTOOL_FLAG
+  BTOOLM_FLAG
+)
+
+if (BUILD_CUSERID)
+  add_library(cuserid OBJECT
+    cuserid.c
+  )
+endif()
+

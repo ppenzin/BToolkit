@@ -1,0 +1,3 @@
+# Copy symbol file
+configure_file(AMNSYMBOL ${CMAKE_BINARY_DIR}/BPLAT/AMNSYMBOL COPYONLY)
+

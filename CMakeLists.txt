@@ -38,10 +38,14 @@ add_compile_definitions(RELEASE_VERSION BSERVER_VERSION)
 # settings over to CMake
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(BUILD_CUSERID OFF)
   add_compile_definitions(linux _BSD_SOURCE POSIX_SOURCE LINUX_VERSION LINUX_SUB_VERSION)
 else()
+  set(BUILD_CUSERID ON)
+  add_compile_definitions(UNKNOWN_VERSION UNKNOWN_SUB_VERSION)
 endif()
 
 add_subdirectory(C)
 add_subdirectory(BEESRC)
+add_subdirectory(SRC)
 

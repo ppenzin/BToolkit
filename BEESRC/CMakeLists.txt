@@ -51,12 +51,19 @@ configure_file(nodmch.c.motif ${BMOTIF_INCLUDE_DIR}/nodmch.c COPYONLY)
 configure_file(golmch.c.motif ${BMOTIF_INCLUDE_DIR}/golmch.c COPYONLY)
 configure_file(seqmch.c.motif ${BMOTIF_INCLUDE_DIR}/seqmch.c COPYONLY)
 
+find_package(X11 REQUIRED)
 find_package(Motif REQUIRED)
+if (NOT X11_Xt_FOUND)
+  message(FATAL_ERROR "X Toolkit is required")
+endif()
 
-add_library(bmotif OBJECT
+add_executable(BTool
   bmotif.c
 )
 
-target_compile_definitions(bmotif PUBLIC BTOOL_FLAG BTOOLM_FLAG)
-target_include_directories(bmotif PUBLIC ${BMOTIF_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${MOTIF_INCLUDE_DIR})
+target_compile_definitions(BTool PUBLIC BTOOL_FLAG BTOOLM_FLAG)
+target_include_directories(BTool PUBLIC ${BMOTIF_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${MOTIF_INCLUDE_DIR})
+target_link_libraries(BTool PUBLIC BToolkitlm_globals ${MOTIF_LIBRARIES} ${X11_LIBRARIES} ${X11_Xt_LIB} ${CUSERID_LINK_FLAG})
 
+# Copy symbol file
+configure_file(SYMBOL ${CMAKE_BINARY_DIR}/BPLAT/SYMBOL COPYONLY)
