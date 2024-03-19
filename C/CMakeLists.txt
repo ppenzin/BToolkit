@@ -39,3 +39,15 @@ add_executable(LatexProofFilter
 add_executable(CheckAnnot
   Proof.c
 )
+
+add_executable(WaitX
+  WaitX.c
+)
+
+add_executable(Unix2Dos
+  Unix2Dos.c
+)
+
+add_executable(Dos2Unix
+  Dos2Unix.c
+)
