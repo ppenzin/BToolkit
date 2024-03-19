@@ -43,4 +43,5 @@ else()
 endif()
 
 add_subdirectory(C)
+add_subdirectory(BEESRC)
 
