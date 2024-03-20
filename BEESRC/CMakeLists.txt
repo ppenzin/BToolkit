@@ -3,6 +3,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 # Disambiguate files by creating separate include directories
 set(B_CORE_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.B-Core)
 set(BMOTIF_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.motif)
+set(BPLATFORM_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.bplatform)
 
 # Copy files during configuration step
 configure_file(itfmch.c.B-Core ${B_CORE_INCLUDE_DIR}/itfmch.c COPYONLY)
@@ -31,6 +32,7 @@ add_executable(b
 
 target_include_directories(b PRIVATE ${B_CORE_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
+# Copy files for BTool build
 configure_file(itfmch.c.motif ${BMOTIF_INCLUDE_DIR}/itfmch.c COPYONLY)
 configure_file(natmch.c.motif ${BMOTIF_INCLUDE_DIR}/natmch.c COPYONLY)
 configure_file(filmch.c.motif ${BMOTIF_INCLUDE_DIR}/filmch.c COPYONLY)
@@ -66,4 +68,34 @@ target_include_directories(BTool PUBLIC ${BMOTIF_INCLUDE_DIR} ${CMAKE_CURRENT_SO
 target_link_libraries(BTool PUBLIC BToolkitlm_globals ${MOTIF_LIBRARIES} ${X11_LIBRARIES} ${X11_Xt_LIB} ${CUSERID_LINK_FLAG})
 
 # Copy symbol file
-configure_file(SYMBOL ${CMAKE_BINARY_DIR}/BPLAT/SYMBOL COPYONLY)
+configure_file(SYMBOL ${BPLATFORM_BINARY_DIR}/SYMBOL COPYONLY)
+
+# Copy files for bplatform build (note the suffix is actually 'release')
+configure_file(itfmch.c.release ${BPLATFORM_INCLUDE_DIR}/itfmch.c COPYONLY)
+configure_file(natmch.c.release ${BPLATFORM_INCLUDE_DIR}/natmch.c COPYONLY)
+configure_file(filmch.c.release ${BPLATFORM_INCLUDE_DIR}/filmch.c COPYONLY)
+configure_file(themch.c.release ${BPLATFORM_INCLUDE_DIR}/themch.c COPYONLY)
+configure_file(prfmch.c.release ${BPLATFORM_INCLUDE_DIR}/prfmch.c COPYONLY)
+configure_file(tolmch.c.release ${BPLATFORM_INCLUDE_DIR}/tolmch.c COPYONLY)
+configure_file(symmch.c.release ${BPLATFORM_INCLUDE_DIR}/symmch.c COPYONLY)
+configure_file(strmch.c.release ${BPLATFORM_INCLUDE_DIR}/strmch.c COPYONLY)
+configure_file(lexmch.c.release ${BPLATFORM_INCLUDE_DIR}/lexmch.c COPYONLY)
+configure_file(frmmch.c.release ${BPLATFORM_INCLUDE_DIR}/frmmch.c COPYONLY)
+configure_file(errmch.c.release ${BPLATFORM_INCLUDE_DIR}/errmch.c COPYONLY)
+configure_file(macmch.c.release ${BPLATFORM_INCLUDE_DIR}/macmch.c COPYONLY)
+configure_file(rulmch.c.release ${BPLATFORM_INCLUDE_DIR}/rulmch.c COPYONLY)
+configure_file(resmch.c.release ${BPLATFORM_INCLUDE_DIR}/resmch.c COPYONLY)
+configure_file(hypmch.c.release ${BPLATFORM_INCLUDE_DIR}/hypmch.c COPYONLY)
+configure_file(tacmch.c.release ${BPLATFORM_INCLUDE_DIR}/tacmch.c COPYONLY)
+configure_file(nodmch.c.release ${BPLATFORM_INCLUDE_DIR}/nodmch.c COPYONLY)
+configure_file(golmch.c.release ${BPLATFORM_INCLUDE_DIR}/golmch.c COPYONLY)
+configure_file(seqmch.c.release ${BPLATFORM_INCLUDE_DIR}/seqmch.c COPYONLY)
+
+add_executable(bplatform
+  bplatform.c
+)
+target_include_directories(bplatform PUBLIC ${BPLATFORM_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_definitions(bplatform PUBLIC bplatform)
+set_target_properties(bplatform PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${BPLATFORM_BINARY_DIR}
+)

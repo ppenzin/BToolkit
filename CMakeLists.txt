@@ -45,7 +45,12 @@ else()
   add_compile_definitions(UNKNOWN_VERSION UNKNOWN_SUB_VERSION)
 endif()
 
+# Binary directories
+set(BPLATFORM_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/BPLAT)
+set(BLIB_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/BLIB)
+
 add_subdirectory(C)
 add_subdirectory(BEESRC)
 add_subdirectory(SRC)
+add_subdirectory(LEX)
 
