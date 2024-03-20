@@ -45,6 +45,14 @@ else()
   add_compile_definitions(UNKNOWN_VERSION UNKNOWN_SUB_VERSION)
 endif()
 
+# Resolve what should be on link line for cuserid()
+set(CUSERID_TARGET cuserid)
+if (BUILD_CUSERID)
+  set(CUSERID_LIB ${CUSERID_TARGET})
+else()
+  set(CUSERID_LIB ${CUSERID_SYS_LIB})
+endif()
+
 # Binary directories
 set(BPLATFORM_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/BPLAT)
 set(BLIB_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/BLIB)

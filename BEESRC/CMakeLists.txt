@@ -65,7 +65,7 @@ add_executable(BTool
 
 target_compile_definitions(BTool PUBLIC BTOOL_FLAG BTOOLM_FLAG)
 target_include_directories(BTool PUBLIC ${BMOTIF_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${MOTIF_INCLUDE_DIR})
-target_link_libraries(BTool PUBLIC BToolkitlm_globals ${MOTIF_LIBRARIES} ${X11_LIBRARIES} ${X11_Xt_LIB} ${CUSERID_LINK_FLAG})
+target_link_libraries(BTool PUBLIC BToolkitlm_globals ${MOTIF_LIBRARIES} ${X11_LIBRARIES} ${X11_Xt_LIB} ${CUSERID_LIB})
 
 # Copy symbol file
 configure_file(SYMBOL ${BPLATFORM_BINARY_DIR}/SYMBOL COPYONLY)
