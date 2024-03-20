@@ -5,6 +5,8 @@ set(B_CORE_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.B-Core)
 set(BMOTIF_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.motif)
 set(BPLATFORM_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include.bplatform)
 
+add_subdirectory(BTL_PRF/CDE/C)
+
 # Copy files during configuration step
 configure_file(itfmch.c.B-Core ${B_CORE_INCLUDE_DIR}/itfmch.c COPYONLY)
 configure_file(natmch.c.B-Core ${B_CORE_INCLUDE_DIR}/natmch.c COPYONLY)
@@ -99,3 +101,18 @@ target_compile_definitions(bplatform PUBLIC bplatform)
 set_target_properties(bplatform PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${BPLATFORM_BINARY_DIR}
 )
+
+add_library(BM OBJECT
+  appmch.motif.c
+  motif.c
+  bmotif_sub.c
+  bmotif.c
+)
+target_compile_definitions(BM PUBLIC
+  bmotif
+  BTOOLKIT_FLAG
+  BTOOL_FLAG
+  BTOOLM_FLAG
+)
+target_include_directories(BM PUBLIC ${BMOTIF_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${MOTIF_INCLUDE_DIR})
+target_compile_options(BM PUBLIC ${ALLOW_COMMON_FLAG})

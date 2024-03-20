@@ -24,11 +24,10 @@ if(USE_PIPE)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pipe")
 endif()
 
-# This is better add on directoris that need it
-# CHECK_C_COMPILER_FLAG(-fcommon USE_FCOMMON)
-# if(USE_FCOMMON)
-#   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcommon")
-# endif()
+CHECK_C_COMPILER_FLAG(-fcommon USE_FCOMMON)
+if(USE_FCOMMON)
+  set(ALLOW_COMMON_FLAG -fcommon)
+endif()
 
 add_compile_definitions(RELEASE_VERSION BSERVER_VERSION)
 
@@ -61,4 +60,5 @@ add_subdirectory(C)
 add_subdirectory(BEESRC)
 add_subdirectory(SRC)
 add_subdirectory(LEX)
+add_subdirectory(MOTIF)
 

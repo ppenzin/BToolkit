@@ -66,3 +66,16 @@ if (BUILD_CUSERID)
   )
 endif()
 
+find_package(Motif REQUIRED)
+
+add_library(ClientSocket OBJECT
+  ClientSocket.c
+)
+target_compile_definitions(ClientSocket PUBLIC
+  bmotif
+  BTOOLKIT_FLAG
+  BTOOL_FLAG
+  BTOOLM_FLAG
+)
+target_include_directories(ClientSocket PUBLIC ${MOTIF_INCLUDE_DIR})
+target_compile_options(ClientSocket PUBLIC ${ALLOW_COMMON_FLAG})
