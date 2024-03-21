@@ -61,4 +61,5 @@ add_subdirectory(BEESRC)
 add_subdirectory(SRC)
 add_subdirectory(LEX)
 add_subdirectory(MOTIF)
+add_subdirectory(SCRIPTS)
 
