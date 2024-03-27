@@ -6,6 +6,9 @@ project(BToolkit
   LANGUAGES C
 )
 
+# FIXME scripts set this unconditionally, may warrant some investigation
+set(WITH_BSERVER ON CACHE BOOL "Build with BSERVER support" FORCE)
+
 # Test compiler flags
 include(CheckCCompilerFlag)
 
@@ -29,7 +32,11 @@ if(USE_FCOMMON)
   set(ALLOW_COMMON_FLAG -fcommon)
 endif()
 
-add_compile_definitions(RELEASE_VERSION BSERVER_VERSION)
+add_compile_definitions(RELEASE_VERSION)
+
+if(WITH_BSERVER)
+  add_compile_definitions(BSERVER_VERSION)
+endif()
 
 # FIXME the scripts define a number of architectures, likely a lot of those
 # would be hard to find and may not have a CMake port. Platform detection
@@ -62,4 +69,5 @@ add_subdirectory(SRC)
 add_subdirectory(LEX)
 add_subdirectory(MOTIF)
 add_subdirectory(SCRIPTS)
+add_subdirectory(LIB)
 
